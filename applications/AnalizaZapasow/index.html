@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Bootstrap demo</title>
+		<link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+		<script src="../../assets/js/chart.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="mb-3">
+				<label for="formFile" class="form-label">Raport zapasów (SAP)</label>
+				<input class="form-control" type="file" id="formFile">
+			</div>
+			<div class="mb-3">
+				<label for="formFile" class="form-label">Stock</label>
+				<input class="form-control" type="number" placeholder="Default input" aria-label="default input example">
+			</div>
+			<div class="mb-3">
+				<canvas id="myChart" style="width:100%;"></canvas>
+			</div>
+		</div>
+		<script>
+			const ctx = document.getElementById('myChart');
+		  
+			var chart = new Chart(ctx, {
+			  data: {
+				labels: ['25.06.2023', '26.06.2023', '27.06.2023', '28.06.2023', '29.06.2023', '30.06.2023'],
+				datasets: [{
+					type: 'bar',
+				  label: 'Dostawy',
+				  data: [5, 19, 3, 5, 2, 3],
+				  borderWidth: 1,
+				},{
+					type: 'line',
+				  label: 'Production Usage',
+				  data: [6, 20, 4, 6, 3, 4],
+				  borderWidth: 1,
+				  tension: 0.3
+				}]
+			  },
+			  options: {
+				scales: {
+				  y: {
+					beginAtZero: true
+				  }
+				}
+			  }
+			});
+		  </script>
+		<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
