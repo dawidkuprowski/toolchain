@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bootstrap demo</title>
+		<title>Analiza zapasów</title>
 		<link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
 		<script src="../../assets/js/chart.min.js"></script>
 	</head>
@@ -26,18 +26,34 @@
 		  
 			var chart = new Chart(ctx, {
 			  data: {
-				labels: ['25.06.2023', '26.06.2023', '27.06.2023', '28.06.2023', '29.06.2023', '30.06.2023'],
+				labels: ['02.06.2023', '03.06.2023', '04.06.2023', '05.06.2023'],
 				datasets: [{
 					type: 'bar',
-				  label: 'Dostawy',
-				  data: [5, 19, 3, 5, 2, 3],
+				  label: 'Deliveries',
+				  data: [0, 0, 0, 0],
+				  borderWidth: 1,
+				},{
+					type: 'bar',
+				  label: 'Production usage',
+				  data: [3694.95, 3106.58, 9462.32, 5157.95],
 				  borderWidth: 1,
 				},{
 					type: 'line',
-				  label: 'Production Usage',
-				  data: [6, 20, 4, 6, 3, 4],
-				  borderWidth: 1,
-				  tension: 0.3
+				  label: 'Stock',
+				  data: [113586, 110479, 101017, 95859],
+				  borderWidth: 1
+				},
+				{
+					type: 'line',
+				  label: 'Stock Max',
+				  data: [117025, 117362.1, 115953.2, 99689.79],
+				  borderWidth: 1
+				},
+				{
+					type: 'line',
+				  label: 'Stock Min',
+				  data: [42221.82, 41923.74, 39659.09, 30569.37],
+				  borderWidth: 1
 				}]
 			  },
 			  options: {

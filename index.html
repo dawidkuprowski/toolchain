@@ -3,27 +3,29 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Bootstrap demo</title>
+		<title>ToolChain</title>
 		<link href="./assets/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="./assets/css/main.css">
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container">
-				<a class="navbar-brand fw-bold" href="#">ToolChain</a>
+				<a class="navbar-brand" href="#">
+					<img src="./assets/img/ToolChain_Logo.png" alt="ToolChain" width="147" height="20">
+				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="#">Analiza zapasów</a>
+							<a class="nav-link" href="" onclick="event.preventDefault(); openApp('./applications/AnalizaZapasow/index.html');">Analiza zapasów</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Drukowanie</a>
 							<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Etykiety (Transfer Order)</a></li>
-							<li><a class="dropdown-item" href="#">Magnesy (Regały)</a></li>
+							<li><a class="dropdown-item" href="" onclick="event.preventDefault(); openApp('./applications/EtykietyTransferOrder/index.html');">Etykiety (Transfer Order)</a></li>
+							<li><a class="dropdown-item" href="" onclick="event.preventDefault(); openApp('./applications/MagnesyRegaly/index.html');">Magnesy (Regały)</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -31,8 +33,16 @@
 			</div>
 		</nav>
 		<div class="container">
-			<iframe src="./applications/AnalizaZapasow/index.html" frameborder="0"></iframe>
+			<br>
+			<nav class="navbar">
+				<div class="container-fluid">
+				  <span class="navbar-brand mb-0 h1"><h3 id="appTitle"></h3></span>
+				</div>
+			</nav>
+			<hr>
+			<iframe id="appContainer" src="" frameborder="0"></iframe>
 		</div>
+		<script src="./assets/js/main.js"></script>
 		<script src="./assets/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
