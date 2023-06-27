@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Generator naklejek na magnesy regałowe</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="editor">
+            <div class="options">
+                <button onclick="generateLabels();">Drukuj</button>
+            </div>
+            <textarea id="input">
+
+            </textarea>
+        </div>
+        <div id="labels">
+            
+        </div>
+        <script src="./qrcode.min.js"></script>
+        <script type="text/javascript">
+            const container = document.getElementById('labels');
+            const input = document.getElementById('input');
+            input.value = "";
+            function generateLabels () {
+                container.innerHTML = "";
+                const data = input.value.trim();
+                const labels = data.split('\n');
+
+                for (let i = 0; i < labels.length; i++) {
+                    container.innerHTML += `
+                    <div class="label">
+                        <span>${labels[i].padStart(8, '0').replace(/\d{2}(?!$)/g, "$&-")}</span>
+                        <div id="qr_${i}" class="label-container"></div>
+                    </div>
+                    `;
+                }
+
+                for (let i = 0; i < labels.length; i++) {
+                    new QRCode(document.getElementById(`qr_${i}`), {
+                        text: labels[i],
+                        width: 128,
+                        height: 128,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                }
+
+                window.print();
+            }
+        </script>
+    </body>
+</html>
