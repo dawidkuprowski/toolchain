@@ -79,7 +79,18 @@ body {
         page-break-inside: avoid;
     }
 
-    .label > span {
+    .label > div {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .label > div > .anc {
+        font-size: 1.4cm;
+        font-weight: 700;
+    }
+
+    .label > div > .bin {
         font-size: 2.4cm;
         font-weight: 700;
     }
