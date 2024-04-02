@@ -45,7 +45,7 @@
                 for (let i = 0; i < labels.length; i++) {
                     const data = labels[i].split('\t');
                     new QRCode(document.getElementById(`qr_${i}`), {
-                        text: `${data[0]}\t${data[1]}\r`,
+                        text: `${data[1]}\t${data[0]}\r`,
                         width: 128,
                         height: 128,
                         colorDark : "#000000",
