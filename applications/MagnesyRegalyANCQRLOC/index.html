@@ -31,15 +31,26 @@
                 
                 for (let i = 0; i < labels.length; i++) {
                     const data = labels[i].split('\t');
-                    container.innerHTML += `
-                    <div class="label" style="text-align: center; width: 100%;">
-                        <div style="text-align: center; width: 100%;">
-                            <span class="anc">${data[1].replace(/(.{3})/g, '$1 ')}</span>
-                            <span class="bin">${data[0].padStart(6, '0').replace(/\d{2}(?!$)/g, "$&-")}</span>    
+                    if (data.length > 1 && data[1]) {
+                        container.innerHTML += `
+                            <div class="label" style="text-align: center; width: 100%;">
+                                <div style="text-align: center; width: 100%;">
+                                    <span class="anc">${data[1].replace(/(.{3})/g, '$1 ')}</span>
+                                    <span class="bin">${data[0].padStart(6, '0').replace(/\d{2}(?!$)/g, "$&-")}</span>    
+                                </div>
+                                <div id="qr_${i}" class="label-container"></div>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML += `
+                        <div class="label" style="text-align: center; width: 100%;">
+                            <div style="text-align: center; width: 100%;">
+                                <span class="bin">${data[0].padStart(6, '0').replace(/\d{2}(?!$)/g, "$&-")}</span>    
+                            </div>
+                            <div id="qr_${i}" class="label-container"></div>
                         </div>
-                        <div id="qr_${i}" class="label-container"></div>
-                    </div>
                     `;
+                    }
                 }
 
                 for (let i = 0; i < labels.length; i++) {
