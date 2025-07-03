@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Generator naklejek na magnesy regałowe + ANC QR</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div class="editor">
+            <div class="options">
+                <button onclick="generateLabels();">Drukuj</button>
+            </div>
+            <textarea id="input" placeholder="Wklej z excela: 1 kolumna - Lokalizacja, 2 kolumna - ANC">
+
+            </textarea>
+        </div>
+        <div id="labels">
+            
+        </div>
+        <script src="./qrcode.min.js"></script>
+        <script type="text/javascript">
+            const container = document.getElementById('labels');
+            const input = document.getElementById('input');
+            input.value = "";
+            function generateLabels () {
+                container.innerHTML = "";
+                const data = input.value.trim();
+                const labels = data.split('\n');
+                
+                for (let i = 0; i < labels.length; i++) {
+                    const data = labels[i].split('\t');
+                    container.innerHTML += `
+                    <div class="label" style="text-align: center; width: 100%;">
+                        <div style="text-align: center; width: 100%;">
+                            <span class="anc">${data[1].replace(/(.{3})/g, '$1 ')}</span>
+                            <span class="bin">${data[0].padStart(6, '0').replace(/\d{2}(?!$)/g, "$&-")}</span>    
+                        </div>
+                        <div id="qr_${i}" class="label-container"></div>
+                    </div>
+                    `;
+                }
+
+                for (let i = 0; i < labels.length; i++) {
+                    const data = labels[i].split('\t');
+                    new QRCode(document.getElementById(`qr_${i}`), {
+                        text: `${data[0]}`,
+                        width: 128,
+                        height: 128,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+                }
+
+                window.print();
+            }
+        </script>
+    </body>
+</html>
