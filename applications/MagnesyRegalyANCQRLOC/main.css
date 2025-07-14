@@ -85,7 +85,7 @@ body {
         align-items: center;
     }
 
-    .label > div > .anc {
+    .label > div > div > .anc {
         font-size: 1.4cm;
         font-weight: 700;
     }
